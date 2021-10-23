@@ -1,0 +1,65 @@
+// MIXIN
+@mixin box-shadow($color){
+    box-shadow: 5px 5px $color;
+}
+
+@mixin text-effect($val){
+    @if $val == danger {
+        color: red;
+    }
+    @else if $val == alert {
+        color: yellow;
+    }
+
+    @else {
+        color: black;
+    }
+}
+
+// Repeticao
+
+// @for
+//to => nao conta ultimo numero
+//through => conta ate o numero colocado 
+@for $i from 1 to 6 {
+    .text-#{$i}{
+        font-size: 15px * $i;
+    }
+}
+
+// @each
+$colors: (color1: blue, color2: red, color3: yellow);
+
+@each $key, $color in $colors {
+    .#{$color}-text {
+        color: $color; 
+    }
+    // .blue-text ...
+}
+
+// heranca
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body {
+    background-color: #7159c1;
+    height: 100vh;
+
+    @extend .flex;
+
+    flex-direction: column;
+}
+
+.container {
+    $text-color2: black;
+
+    width: fit-content;
+    height: fit-content;
+    background-color: white;
+
+    @include box-shadow(orange);
+
+}
